@@ -97,6 +97,9 @@ def read_img_links(sleep_interval):
   links = [x.strip() for x in links]
   download_count = 0
 
+  # List of path of saved images
+  list_file_loc = []
+
   for link in links:
     
     # Add sleep the code to avoid overwhelming the reddit PRAW API
@@ -112,7 +115,7 @@ def read_img_links(sleep_interval):
     # Use regex to get the the proper filename.    
     file_name = re.search("(\w*\.png|\.jpg|\.jpeg)\d*", link.lower()).group(1)
     os.makedirs('result', exist_ok=True)
-    file_loc = 'result/{}'.format(file_name)
+    file_loc = 'result/{}'.format(file_name)    
 
     if not file_name:
       continue
@@ -120,17 +123,19 @@ def read_img_links(sleep_interval):
     download_status = download_img(link, file_name, file_loc)
     download_count += 1
 
+    # Append the list of file only when the download is successful
+    list_file_loc.append(file_loc)
+
     if download_status == 0:
       return download_count, 0
 
-  return download_count, 1
+  return download_count, 1, list_file_loc
 
 
 #if __name__ == '__main__':
 
 def get_img_subreddit(submission, num_img_limit=100, sleep_interval=3):
-  """Pass in list of PRAW reddit submission"""
-
+  """Pass in PRAW reddit submission, return the list of images saved for the provided submission"""
     
   # Change from list of submission to allow for integration between text mining module and image one
   url_list = get_img_urls(submission)
@@ -139,7 +144,7 @@ def get_img_subreddit(submission, num_img_limit=100, sleep_interval=3):
   if url_list:
 
     save_list(url_list)
-    count, status = read_img_links(sleep_interval)
+    count, status, list_file_loc = read_img_links(sleep_interval)
 
     if status == 1:
         print('\nDownload Complete\n{} - Images Downloaded\n{} - Posts Ignored'.format(count, num_img_limit - count))
@@ -147,3 +152,5 @@ def get_img_subreddit(submission, num_img_limit=100, sleep_interval=3):
         print('\nDownload Incomplete\n{} - Images Downloaded'.format(count))
 
   delete_img_list()
+
+  return list_file_loc
