@@ -4,3 +4,4 @@ img_links.txt
 .DS_Store
 .ipynb_checkpoints
 __pycache__/
+scrapped_data.json
