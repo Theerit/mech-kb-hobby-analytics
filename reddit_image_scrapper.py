@@ -31,8 +31,9 @@ def save_list(img_url_list):
 
 
 def delete_img_list():
-  f = open('img_links.txt', 'r+')
-  f.truncate()
+  if os.path.exists('img_links.txt'):
+    f = open('img_links.txt', 'r+')
+    f.truncate()
 
 
 def is_img_link(img_link):
@@ -54,12 +55,17 @@ def get_img_urls(submission):
     
     image_url_list = []
     #for submission in submissions:
-    image_dict = submission.media_metadata
-    for image_item in image_dict.values():
-      largest_image = image_item['s']
-      image_url = largest_image['u']
-      image_url_list.append(image_url)
+    # Error with Therav2, need to check if media metadata exists as attributes
+    if hasattr(submission, 'media_metadata'):      
+      image_dict = submission.media_metadata
+      for image_item in image_dict.values():
+        largest_image = image_item['s']
+        image_url = largest_image['u']
+        image_url_list.append(image_url)
     
+    # In case of single image with no information on the OP post like TheraV2, also need url
+    image_url_list.append(submission.url)
+
     #return [submission.url for submission in submissions]
     return image_url_list
 
@@ -81,7 +87,7 @@ def download_img(img_url, img_title, filename):
   opener.addheaders = [('User-agent', 'Mozilla/5.0')]
   urllib.request.install_opener(opener)
   try:
-    print('Downloading ' + img_title + '....')
+    #print('Downloading ' + img_title + '....')
     urllib.request.urlretrieve(img_url, filename)
     return 1
 
@@ -99,6 +105,7 @@ def read_img_links(sleep_interval):
 
   # List of path of saved images
   list_file_loc = []
+  os.makedirs('result', exist_ok=True)
 
   for link in links:
     
@@ -113,8 +120,9 @@ def read_img_links(sleep_interval):
     
     # Current format of the files is: qqij9wiyneia1.png?width=3000&format=png&auto=webp&v=enabled&s=97450fe5838e641497b01e0222f5593d043b24b4
     # Use regex to get the the proper filename.    
-    file_name = re.search("(\w*\.png|\.jpg|\.jpeg)\d*", link.lower()).group(1)
-    os.makedirs('result', exist_ok=True)
+    file_name = re.search("(\w*\.png|\.jpg|\.jpeg)\d*", link.lower())
+    if file_name is not None:
+      file_name = file_name.group(1)
     file_loc = 'result/{}'.format(file_name)    
 
     if not file_name:
@@ -138,6 +146,7 @@ def get_img_subreddit(submission, num_img_limit=100, sleep_interval=3):
   """Pass in PRAW reddit submission, return the list of images saved for the provided submission"""
     
   # Change from list of submission to allow for integration between text mining module and image one
+  delete_img_list() # Delete the list to get clean slate
   url_list = get_img_urls(submission)
   file_no = 1
 
