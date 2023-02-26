@@ -123,10 +123,12 @@ def read_img_links(sleep_interval):
     file_name = re.search("(\w*\.png|\.jpg|\.jpeg)\d*", link.lower())
     if file_name is not None:
       file_name = file_name.group(1)
-    file_loc = 'result/{}'.format(file_name)    
-
-    if not file_name:
+      file_loc = 'result/{}'.format(file_name)
+    else:
       continue
+
+    # if not file_name:
+    #   continue
 
     download_status = download_img(link, file_name, file_loc)
     download_count += 1
@@ -146,7 +148,6 @@ def get_img_subreddit(submission, num_img_limit=100, sleep_interval=3):
   """Pass in PRAW reddit submission, return the list of images saved for the provided submission"""
     
   # Change from list of submission to allow for integration between text mining module and image one
-  delete_img_list() # Delete the list to get clean slate
   url_list = get_img_urls(submission)
   file_no = 1
 
