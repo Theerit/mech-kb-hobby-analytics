@@ -5,3 +5,4 @@ img_links.txt
 .ipynb_checkpoints
 __pycache__/
 scrapped_data.json
+data/
