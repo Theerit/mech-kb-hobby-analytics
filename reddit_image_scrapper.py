@@ -60,7 +60,11 @@ def get_img_urls(submission):
       image_dict = submission.media_metadata
       for image_item in image_dict.values():
         largest_image = image_item['s']
-        image_url = largest_image['u']
+        
+        # We run into an error where the image is a gif, and doesn't have a 'u' as a key
+        if 'u' in largest_image.keys():
+          image_url = largest_image['u']
+          
         image_url_list.append(image_url)
     
     # In case of single image with no information on the OP post like TheraV2, also need url
