@@ -6,3 +6,4 @@ img_links.txt
 __pycache__/
 scrapped_data.json
 data/
+processed_df.parquet
