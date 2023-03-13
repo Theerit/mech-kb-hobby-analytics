@@ -2,11 +2,12 @@ import re, os, time
 import praw
 import configparser
 import urllib.request
+from pmaw import PushshiftAPI #to allow to mine more than 1000 records
+
 
 from prawcore.exceptions import Redirect
 from prawcore.exceptions import ResponseException
 from urllib.error import HTTPError
-
 
 class ClientInfo:
   id = ''
