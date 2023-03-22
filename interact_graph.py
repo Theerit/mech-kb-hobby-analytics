@@ -10,6 +10,7 @@ import pandas as pd
 import seaborn as sns
 import seaborn.objects as so
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 
 from IPython.display import display
 from ipywidgets import interactive
@@ -20,26 +21,28 @@ import ipywidgets as widgets
 
 def plot_bar_groupbuy(df_widget, start_date, end_date):			
 
-	#fig_widget.clf()
-	#ax_widget.cla()
 	plt.close()
-	sns.set_color_codes("pastel")	
 
-	fig_widget, ax_widget = plt.subplots(figsize=(12, 8))
+	fig_widget, ax_widget = plt.subplots(figsize=(10, 6))
 	#fig_widget = plt.figure(figsize=(20, 12))
 	
-	# Clear the old figure first	
-	#ax_widget = fig_widget.add_axes([0, 0, 20, 12])
-	#ax = fig_widget.add_axes([0, 0, 1, 1])
+	df_update = df_widget.loc[(df_widget['date'] >= start_date) & (df_widget['date'] <= end_date), :]
+	ax_widget.yaxis.set_major_locator(MaxNLocator(integer=True))
+	ax_widget.xaxis.set_major_locator(MaxNLocator(integer=True))
+	prod_col = [col for col in df_update.columns if col.startswith('count')]
+	stack_list = []
+	for col in prod_col:
+		stack_list.append(df_update[col])
+	stack_plot = np.vstack(stack_list)
+	ax_widget.stackplot(df_update['str_date'], stack_plot, 
+		     labels=[col.replace('count_', '').replace('_in_day', '') for col in df_update.columns if col.startswith('count')])
 	
-	df_update = df_widget.loc[(df_widget['date'] >= start_date) & (df_widget['date'] <= end_date), :].copy()	
-	df_update['date'] = df_update['date'].dt.date
-	sns.barplot(x="date", y="count_product_in_day", data=df_update, hue="product", dodge=False, ax=ax_widget)
+	ax_widget.legend()
+	ax_widget.grid()
 	ax_widget.tick_params(axis='x', labelrotation = 90)
-	#ax_widget.set_ylabel(f'Available group buy from {start_date} to {end_date}')
 	ax_widget.set_title(f'Available group buy from {start_date.strftime("%d-%b-%Y")} to {end_date.strftime("%d-%b-%Y")}')
 	fig_widget.tight_layout()		
-	#fig_widget.show()
+	
 
 def do_update(df_widget, start_date, end_date):
     """Based on the new control state, update the interactive plot.
@@ -81,7 +84,8 @@ def date_slider_config(start_date, end_date, end_date_max):
 			index=index,
 			description='Dates',
 			orientation='horizontal',
-			layout={'width': '800px'}
+			layout={'width': '800px'},
+			continuous_update=False
 	)
 
 	return selection_range_slider
@@ -92,8 +96,9 @@ def init_plot(df_day):
 
 	global df_widget
 	df_widget = df_day.copy()	
+	df_widget['str_date'] = df_widget['date'].dt.date.astype(str)	
 	start_date = df_widget['date'].min()
-	end_date = start_date + dt.timedelta(days=50)
+	end_date = start_date + dt.timedelta(days=150)
 	end_date_max =  df_widget['date'].max()
 	#plot_bar_groupbuy(df_widget, start_date, end_date)
 
