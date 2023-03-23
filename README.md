@@ -97,9 +97,7 @@ Hi, welcome to my side project repository. This project is a sort of passion wor
 * Visualize the dataframe to understand the data more, e.g. distribution of each group buy products, majority keycap vendors, how many group buys are available during the past 3 years.
 
 
-Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- stash this for now <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
@@ -112,9 +110,9 @@ Do a search and replace with your text editor for the following: `github_usernam
 * [seaborn][seaborn-url]
 * [ipywidget][ipywidget-url]
 * [praw][praw-url]
-* [pushshift] [pushshift-url]
+* [pushshift][pushshift-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- stash this for now <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
@@ -163,12 +161,13 @@ I have attached the video screen shot of some of the analysis I have done. It sh
 * Mechanical keyboard, even though has lower product counts, can compete with the keycaps in terms of the prices
 * We can see that the number of group buy peaks around 2021, and drops down from there (perhaps correlates with other world events)
 
+Please visit EDA.ipynb or EDA.pdf for more analysis.
 
 ![Stack Plot Count Video][stack-plot-count-video]
 
 ![Stack Plot Price Video][stack-plot-price-video]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- stash this for now <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
@@ -186,7 +185,7 @@ I have attached the video screen shot of some of the analysis I have done. It sh
 <!-- probably don't need this line right now
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues). -->
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- stash this for now <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
@@ -195,7 +194,7 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 Feel free to open the issues if you have any comments or questions. Criticisms are also welcome. Feel free to fork the repo and create pull request if you would like to colloborate as well.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- stash this for now <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
@@ -204,7 +203,7 @@ Feel free to open the issues if you have any comments or questions. Criticisms a
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- stash this for now <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
@@ -215,7 +214,7 @@ Your Name - theerit.l@gmail.com
 
 Project Link: [https://github.com/Theerit/mech-kb-hobby-analytics](https://github.com/Theerit/mech-kb-hobby-analytics)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- stash this for now <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
@@ -227,7 +226,7 @@ I would like to acknowledge the following repository as I borrow/copy codes from
 * [python-plot-examples](https://github.com/CodeSolid/python-plot-examples)
 * [Best-README-Template] (https://github.com/othneildrew/Best-README-Template)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- stash this for now <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -245,8 +244,8 @@ I would like to acknowledge the following repository as I borrow/copy codes from
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [cover-photo]: images/cover_photo.png
-[stack-plot-count-video]: image/stack_plot_count_record.png
-[stack-plot-price-video]: image/stack_plot_price_record.png
+[stack-plot-count-video]: image/stack_plot_count_record.mov
+[stack-plot-price-video]: image/stack_plot_price_record.mov
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
