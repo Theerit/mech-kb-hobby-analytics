@@ -244,8 +244,8 @@ I would like to acknowledge the following repository as I borrow/copy codes from
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [cover-photo]: images/cover_photo.png
-[stack-plot-count-video]: images/stack_plot_count_record.mov
-[stack-plot-price-video]: images/stack_plot_price_record.mov
+[stack-plot-count-video]: images/stack_plot_count_record.gif
+[stack-plot-price-video]: images/stack_plot_price_record.gif
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
